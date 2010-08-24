@@ -7,18 +7,20 @@
 <body>
 <canvas id="c" style="background-color: lightgray"></canvas>
 <script type="text/javascript">
-    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, sizex, sizey, mf,msqrt, dx,dy,i,j,t,g;
+    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, sizex, sizey, mf,msqrt, dx,dy,i,j,t,g,ci,cy,all,tm,f;
     el.width = el.height = sizex = sizey = 640;
+    all = [];
     g = 0.3;
     mouseup = false;
-    power = 0;
     mf = Math.floor;
     msqrt = Math.sqrt;
-    x = i = y = j = t = 0;
+    x = i = y = j = tm =  power = 0;
 
     setInterval('draw()', 50);
 
     el.onmousedown = function(e) {
+        mouseup=false;
+        power = 0;
         x = e.pageX;
         y = e.pageY;
         z = el;
@@ -26,21 +28,26 @@
             x -= z.offsetLeft;
             y -= z.offsetTop;
         } while (z = z.offsetParent);
-        setInterval("increasePower()", 100);
+        all.push({x:x,y:y});
+        if(all.length==1) {
+        setInterval("increasePower()", 70)};
     };
 
     el.onmouseup = function() {
-        dx = 20 * x / sizex;
-        dy = 20 * (sizey - y) / sizey;
+        f=all[all.length-1];
+        f.dx = 40 * x / sizex * power / 100;
+        f.dy = 40 * (sizey - y) / sizey * power / 100;
+        f.t = 0;
+        f.a = 1;
         mouseup = true;
     };
 
     function increasePower() {
         if (!mouseup) {
             power = power < 100 ? power + 5 : power;
-        } else {
-            t++;
-        }
+        } else for (i = 0; i < all.length; i++) {
+                all[i].t++;
+            }
     }
     function draw() {
         c.clearRect(0, 0, sizex, sizey);
@@ -52,8 +59,14 @@
         c.lineTo(mf(x * power / 100), y + mf((sizey - y) * (1 - power / 100)));
         c.closePath();
         c.stroke();
-        if (mouseup) {
-            c.fillRect(mf(dx * t), mf(sizey - dy * t + g * t * t / 2), 4, 4);
+        for (i = 0; i < all.length; i++) {
+            t = all[i];
+            if (t.a > 0) {
+                ci = mf(t.dx * t.t);
+                cy = mf(sizey - t.dy * t.t + g * t.t * t.t / 2);
+                if(ci>sizex||cy>sizey){all.splice(i,1);}
+                c.fillRect(ci, cy, 3, 3);
+            }
         }
     }
 
