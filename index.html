@@ -7,16 +7,18 @@
 <body>
 <canvas id="c" style="background-color: lightgray"></canvas>
 <script type="text/javascript">
-    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, sizex, sizey, mf,msqrt, dx,dy,i,j,t,g,ci,cy,all,tm,f;
-    el.width = el.height = sizex = sizey = 640;
-    all = [];
+
+    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, W, H, mf,msqrt, dx,dy,i,j,t,g,ci,cy,A,tm,f,e;
+    el.width = el.height = W = H = 640;
+    A = [];
     g = 0.3;
-    mouseup = false;
+    mouseup = true;
     mf = Math.floor;
     msqrt = Math.sqrt;
     x = i = y = j = tm =  power = 0;
 
     setInterval('draw()', 50);
+    setInterval("increasePower()", 70);
 
     el.onmousedown = function(e) {
         mouseup=false;
@@ -28,15 +30,13 @@
             x -= z.offsetLeft;
             y -= z.offsetTop;
         } while (z = z.offsetParent);
-        all.push({x:x,y:y});
-        if(all.length==1) {
-        setInterval("increasePower()", 70)};
+        A.push({x:x,y:y});
     };
 
     el.onmouseup = function() {
-        f=all[all.length-1];
-        f.dx = 40 * x / sizex * power / 100;
-        f.dy = 40 * (sizey - y) / sizey * power / 100;
+        f=A[A.length-1];
+        f.dx = 40 * x / W * power / 100;
+        f.dy = 40 * (H - y) / H * power / 100;
         f.t = 0;
         f.a = 1;
         mouseup = true;
@@ -45,30 +45,33 @@
     function increasePower() {
         if (!mouseup) {
             power = power < 100 ? power + 5 : power;
-        } else for (i = 0; i < all.length; i++) {
-                all[i].t++;
+        } else for (i = 0; i < A.length; i++) {
+                A[i].t++;
             }
     }
     function draw() {
-        c.clearRect(0, 0, sizex, sizey);
+        c.clearRect(0, 0, W, H);
         c.beginPath();
-        if (mouseup) {
-            c.strokeStyle = "#0a0";
-        }
-        c.moveTo(0, sizey);
-        c.lineTo(mf(x * power / 100), y + mf((sizey - y) * (1 - power / 100)));
+//        if (mouseup) {
+//            c.strokeStyle = "#0a0";
+//        }
+        c.moveTo(0, H);
+        c.lineTo(mf(x * power / 100), y + mf((H - y) * (1 - power / 100)));
         c.closePath();
         c.stroke();
-        for (i = 0; i < all.length; i++) {
-            t = all[i];
+        for (i = 0; i < A.length; i++) {
+            t = A[i];
             if (t.a > 0) {
-                ci = mf(t.dx * t.t);
-                cy = mf(sizey - t.dy * t.t + g * t.t * t.t / 2);
-                if(ci>sizex||cy>sizey){all.splice(i,1);}
+                e=t.t;
+                ci = mf(t.dx * e);
+                cy = mf(H - t.dy * e + g * e * e / 2);
+//                if(ci>W||cy>H){all.splice(i,1);}
                 c.fillRect(ci, cy, 3, 3);
             }
         }
     }
+
+    
 
 
 </script>
