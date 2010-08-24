@@ -8,9 +8,9 @@
 <canvas id="c" style="background-color: lightgray"></canvas>
 <script type="text/javascript">
 
-    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, W, H, mf,msqrt, dx,dy,i,j,t,g,ci,cy,A,tm,f,e;
+    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, W, H, mf,msqrt, dx,dy,i,j,t,g,ci,cy,A,tm,f,e,B;
     el.width = el.height = W = H = 640;
-    A = [];
+    A = [];B=[];
     g = 0.3;
     mouseup = true;
     mf = Math.floor;
@@ -19,6 +19,9 @@
 
     setInterval('draw()', 50);
     setInterval("increasePower()", 70);
+    setInterval(function(){
+        B.push({x:W,y:300});
+    }, 2000);
 
     el.onmousedown = function(e) {
         mouseup=false;
@@ -30,7 +33,7 @@
             x -= z.offsetLeft;
             y -= z.offsetTop;
         } while (z = z.offsetParent);
-        A.push({x:x,y:y});
+        A.push({x:x,y:y,a:0});
     };
 
     el.onmouseup = function() {
@@ -59,6 +62,11 @@
         c.lineTo(mf(x * power / 100), y + mf((H - y) * (1 - power / 100)));
         c.closePath();
         c.stroke();
+        for(i=0; i<B.length;i++){
+            c.fillRect(B[i].x, B[i].y, 6, 6);
+            B[i].x-=2;
+
+        }
         for (i = 0; i < A.length; i++) {
             t = A[i];
             if (t.a > 0) {
@@ -69,6 +77,7 @@
                 c.fillRect(ci, cy, 3, 3);
             }
         }
+
     }
 
     

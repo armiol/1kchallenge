@@ -27,8 +27,21 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="19" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.52693826">
-              <folding />
+            <state line="70" column="9" selection-start="1832" selection-end="1832" vertical-scroll-proportion="0.64520365">
+              <folding>
+                <marker date="1282665343000" expanded="true" signature="627:663" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="706:956" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="819:891" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="989:1167" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="1199:1371" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="1223:1287" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="1324:1365" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="1392:2108" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="1450:1524" placeholder="//..." />
+                <marker date="1282665343000" expanded="true" signature="1700:1781" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="1821:2101" placeholder="{...}" />
+                <marker date="1282665343000" expanded="true" signature="1870:2091" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,8 +189,21 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="19" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.52693826">
-          <folding />
+        <state line="70" column="9" selection-start="1832" selection-end="1832" vertical-scroll-proportion="0.64520365">
+          <folding>
+            <marker date="1282665343000" expanded="true" signature="627:663" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="706:956" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="819:891" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="989:1167" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="1199:1371" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="1223:1287" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="1324:1365" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="1392:2108" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="1450:1524" placeholder="//..." />
+            <marker date="1282665343000" expanded="true" signature="1700:1781" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="1821:2101" placeholder="{...}" />
+            <marker date="1282665343000" expanded="true" signature="1870:2091" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
