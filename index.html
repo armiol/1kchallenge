@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>JS1k, 1k demo submission [id]</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<canvas id="c" style="background-color: lightgray"></canvas>
+<script type="text/javascript">
+    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, sizex, sizey, mf,msqrt, dx,dy,i,j,t,g;
+    el.width = el.height = sizex = sizey = 640;
+    g = 0.3;
+    mouseup = false;
+    power = 0;
+    mf = Math.floor;
+    msqrt = Math.sqrt;
+    x = i = y = j = t = 0;
+
+    setInterval('draw()', 50);
+
+    el.onmousedown = function(e) {
+        x = e.pageX;
+        y = e.pageY;
+        z = el;
+        do {
+            x -= z.offsetLeft;
+            y -= z.offsetTop;
+        } while (z = z.offsetParent);
+        setInterval("increasePower()", 100);
+    };
+
+    el.onmouseup = function() {
+        dx = 20 * x / sizex;
+        dy = 20 * (sizey - y) / sizey;
+        mouseup = true;
+    };
+
+    function increasePower() {
+        if (!mouseup) {
+            power = power < 100 ? power + 5 : power;
+        } else {
+            t++;
+        }
+    }
+    function draw() {
+        c.clearRect(0, 0, sizex, sizey);
+        c.beginPath();
+        if (mouseup) {
+            c.strokeStyle = "#0a0";
+        }
+        c.moveTo(0, sizey);
+        c.lineTo(mf(x * power / 100), y + mf((sizey - y) * (1 - power / 100)));
+        c.closePath();
+        c.stroke();
+        if (mouseup) {
+            c.fillRect(mf(dx * t), mf(sizey - dy * t + g * t * t / 2), 4, 4);
+        }
+    }
+
+
+</script>
+</body>
+</html>
