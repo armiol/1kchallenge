@@ -8,18 +8,19 @@
 <canvas id="c" style="background-color: lightgray"></canvas>
 <script type="text/javascript">
 
-    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, W, H, mf,msqrt, dx,dy,i,j,t,g,ci,cy,A,tm,f,e,B;
+    var d = document,el = d.getElementById('c'),c = el.getContext('2d'),x,y,z,mouseup, power, W, H, mf,msqrt, dx,dy,i,j,t,g,ci,cy,A,tm,f,e,B,b,S,I;
     el.width = el.height = W = H = 640;
     A = [];B=[];
     g = 0.3;
     mouseup = true;
     mf = Math.floor;
     msqrt = Math.sqrt;
-    x = i = y = j = tm =  power = 0;
+    x = i = y = j = tm = S= power = 0;
+    I=setInterval;
 
-    setInterval('draw()', 50);
-    setInterval("increasePower()", 70);
-    setInterval(function(){
+    I('draw()', 50);
+    I("increasePower()", 70);
+    I(function(){
         B.push({x:W,y:300});
     }, 2000);
 
@@ -75,14 +76,13 @@
                 cy = mf(H - t.dy * e + g * e * e / 2);
 //                if(ci>W||cy>H){all.splice(i,1);}
                 c.fillRect(ci, cy, 3, 3);
+                for(j=0; j<B.length;j++){
+                    b = B[i];
+                    if(ci >= b.x && ci<=b.x+6 && cy >=b.y && b.y+6) S+=10;
+                }
             }
         }
-
     }
-
-    
-
-
 </script>
 </body>
 </html>
